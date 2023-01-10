@@ -15,7 +15,7 @@ func main() {
 	}
 
 	if input[0:2] == "0x" {
-		input = input[2:]
+		input = input[2:] // Remove hex prefix
 	}
 	fmt.Println(generateBytecode(input))
 }
