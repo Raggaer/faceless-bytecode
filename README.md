@@ -1,7 +1,7 @@
 # Faceless Bytecode
 
 <p align="center">
-	<img src="faceless.svg" width="200" />
+	<img src="faceless.svg" width="1000" />
 </p>
 
 NFT collection that uses custom bytecode generated contracts for storing SVG data on-chain.
