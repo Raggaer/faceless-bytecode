@@ -14,6 +14,8 @@ contract Faceless is ERC721Enumerable {
   mapping(uint256 => color[8]) public colorData;
 
   address private _owner;
+
+  // Address to store raw bytecode contract
   address private _data;
 
   modifier onlyOwner() {
@@ -31,6 +33,7 @@ contract Faceless is ERC721Enumerable {
       for(uint i = 0; i < total; i++) {
         uint256 tokenId = totalSupply();
 
+        // Store color data
         colorData[tokenId][0] = decodeColorData(i, _colorData);
         colorData[tokenId][1] = decodeColorData(i + 3, _colorData);
         colorData[tokenId][2] = decodeColorData(i + 6, _colorData);
@@ -101,6 +104,7 @@ contract Faceless is ERC721Enumerable {
     return r;
   }
 
+  // Converts a 3 digit (uint8) number into a string
   function uint8ToString(uint8 _v) private pure returns (bytes memory) {
     bytes memory buff = new bytes(3);
     buff[2] = bytes1(48 + (_v % 10));
@@ -111,6 +115,11 @@ contract Faceless is ERC721Enumerable {
     return buff;
   }
 
+  // 0 Total data length
+  // 1 Amount of entries
+  // 2 Size of entry 1
+  // n SVG data of entry 1
+  // ...
   function retrieveSvgData(uint8 _i) private view returns (bytes memory) {
     bytes memory buff = bytes(_data.code);
 
@@ -123,6 +132,8 @@ contract Faceless is ERC721Enumerable {
 
         if(i == _i) {
           bytes memory ret = new bytes(len);
+
+          // Read svg string data
           for(uint8 x = 0; x < len; x++) {
             ret[x] = buff[r + 1 + x];
           }
@@ -133,6 +144,7 @@ contract Faceless is ERC721Enumerable {
     }
   }
 
+  // Decode uint8, uint8, uint8
   function decodeColorData(uint256 i, bytes memory _data) private view returns (color memory) {
     color memory c;
     c.r = uint8(_data[i]);

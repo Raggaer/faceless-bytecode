@@ -1,5 +1,9 @@
 # Faceless Bytecode
 
+<p align="center">
+	<img src="faceless.svg" width="200" />
+</p>
+
 NFT collection that uses custom bytecode generated contracts for storing SVG data on-chain.
 The contracts that hold the SVG data contain hexadecimal strings as their own deployed bytecode.
 
