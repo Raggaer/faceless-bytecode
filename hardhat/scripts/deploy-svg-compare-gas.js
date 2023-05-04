@@ -20,7 +20,7 @@ async function main() {
   const b = receipt2.gasUsed;
   const v = b.mul(100).div(a);
 
-  console.log("Gas for raw bytecode", a.toString());
+  console.log("Gas for raw bytecode      ", a.toString());
   console.log(
     "Gas for contract with data",
     b.toString(),
